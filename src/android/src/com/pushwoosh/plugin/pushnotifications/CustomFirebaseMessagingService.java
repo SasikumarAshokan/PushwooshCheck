@@ -1,5 +1,7 @@
 package com.pushwoosh.plugin.pushnotifications;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -9,6 +11,9 @@ import com.pushwoosh.firebase.PushwooshFcmHelper;
 public class CustomFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+        
+        Log.i("Tokenization===>","Pushwoosh Remote Message : "+remoteMessage.getData());
+        
         if (PushwooshFcmHelper.isPushwooshMessage(remoteMessage)){
             PushwooshFcmHelper.onMessageReceived(this, remoteMessage);
         } else {
